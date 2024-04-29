@@ -43,7 +43,7 @@ function clearCharactersAndFinishGame() {
     count.textContent = "";
 }
 
-let currentCount = 10;
+let currentCount = 20;
 
 const interval = setInterval(() => {
     if (currentCount <= 0) {
@@ -58,6 +58,20 @@ const interval = setInterval(() => {
     count.textContent = currentCount;
 }, 1000);
 
+function finishGame() {
+    if (findCharmander && findPikachu && findZubat) {
+        clearCharactersAndFinishGame();
+
+        const timeOut = setTimeout(() => {
+            game.style.backgroundImage = "url('../assets/winner.jpg')";
+            clearInterval(interval);
+            clearTimeout(timeOut);
+            audio.pause();
+            return;
+        }, 800);
+    }
+}
+
 function getRightPosition() {
     return parseInt(ash.style.right.split("px")) || 2;
 }
@@ -67,6 +81,8 @@ function getTopPosition() {
 }
 
 function verifyLookPokemon(to) {
+
+    finishGame();
     const pokemonRightPosition = to === "ArrowLeft"
         ? `${getRightPosition() - 64}px`
         : `${getRightPosition() + 64}px`;

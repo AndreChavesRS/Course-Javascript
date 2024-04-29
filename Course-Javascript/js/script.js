@@ -68,7 +68,7 @@ function finishGame() {
             clearTimeout(timeOut);
             audio.pause();
             return;
-        }, 800);
+        }, 1200);
     }
 }
 

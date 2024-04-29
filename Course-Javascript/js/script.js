@@ -10,6 +10,14 @@ const charmander = document.querySelector("#charmander");
 const zubat = document.querySelector("#zubat");
 const pikachu = document.querySelector("#pikachu");
 
+function getRightPosition() {
+    return parseInt(ash.style.right.split("px")) || 2;
+}
+
+function getTopPosition() {
+    return parseInt(ash.style.top.split("px")) || 2;
+}
+
 body.addEventListener("keydown", (event) => {
     event.stopPropagation();;
 
@@ -17,21 +25,39 @@ body.addEventListener("keydown", (event) => {
 
     switch (event.code) {
         case "ArrowLeft":
-            ash.src = "../assets/left.png";
+            if (getRightPosition() < 770) {
+                ash.style.right = `${getRightPosition() + 8}px`;
+
+                ash.src = "../assets/left.png";
+
+            }
+
             break;
 
         case "ArrowRight":
-            ash.src = "../assets/right.png";
+            if (getRightPosition() > 2) {
+                ash.style.right = `${getRightPosition() - 8}px`;
+                ash.src = "../assets/right.png";
+            }
+
 
             break;
 
         case "ArrowDown":
-            ash.src = "../assets/front.png";
+            if (getTopPosition() < 625) {
+                ash.style.top = `${getTopPosition() + 8}px`;
+                ash.src = "../assets/front.png";
+            }
+
 
             break;
 
         case "ArrowUp":
-            ash.src = "../assets/back.png";
+            if (getTopPosition() > 2) {
+                ash.style.top = `${getTopPosition() - 8}px`;
+                ash.src = "../assets/back.png";
+            }
+
 
             break;
 

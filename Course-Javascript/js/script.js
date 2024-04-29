@@ -32,6 +32,30 @@ function getTopPosition() {
     return parseInt(ash.style.top.split("px")) || 2;
 }
 
+function veryLookPokemon() {
+
+    if (
+        getTopPosition() >= 2 && getTopPosition() <= 98 && getRightPosition() >= 130 && getRightPosition() <= 216
+    ) {
+        charmander.style.display = "block";
+        return;
+    }
+
+    if (
+        getTopPosition() >= 474 && getTopPosition() <= 594 && getRightPosition() <= 138 && getRightPosition() >= 42
+    ) {
+        zubat.style.display = "block";
+        return;
+    }
+
+    if (
+        getTopPosition() >= 266 && getTopPosition() <= 394 && getRightPosition() >= 546 && getRightPosition() <= 650
+    ) {
+        pikachu.style.display = "block";
+        return;
+    }
+}
+
 body.addEventListener("keydown", (event) => {
     event.stopPropagation();;
 
@@ -80,4 +104,6 @@ body.addEventListener("keydown", (event) => {
 
             break;
     }
+
+    veryLookPokemon();
 });

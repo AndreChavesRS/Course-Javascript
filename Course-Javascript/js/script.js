@@ -10,6 +10,20 @@ const charmander = document.querySelector("#charmander");
 const zubat = document.querySelector("#zubat");
 const pikachu = document.querySelector("#pikachu");
 
+const audio = document.querySelector("audio");
+
+audio.volume = 0.1;
+
+const musicControl = document.querySelector(".music-control");
+
+musicControl.addEventListener("click", (event) => {
+    event.stopPropagation()
+
+    event.target.src = `${event.target.src}`.includes("on.png") ? "../assets/icons/off.png" : "../assets/icons/on.png";
+
+    `${event.target.src}`.includes("on.png") ? audio.play() : audio.pause();
+})
+
 function getRightPosition() {
     return parseInt(ash.style.right.split("px")) || 2;
 }
@@ -27,7 +41,7 @@ body.addEventListener("keydown", (event) => {
         case "ArrowLeft":
             if (getRightPosition() < 770) {
                 ash.style.right = `${getRightPosition() + 8}px`;
-
+                // console.log(getRightPosition());
                 ash.src = "../assets/left.png";
 
             }
@@ -44,8 +58,9 @@ body.addEventListener("keydown", (event) => {
             break;
 
         case "ArrowDown":
-            if (getTopPosition() < 625) {
+            if (getTopPosition() < 626) {
                 ash.style.top = `${getTopPosition() + 8}px`;
+                // console.log(getTopPosition());
                 ash.src = "../assets/front.png";
             }
 

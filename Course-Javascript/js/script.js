@@ -2,7 +2,7 @@ const body = document.querySelector("body");
 const game = document.querySelector(".game");;
 
 const count = document.querySelector("h1");
-const reset = document.querySelector(".reset");;
+const reset = document.querySelector("#reset");;
 
 const ash = document.querySelector("#ash");
 
@@ -27,6 +27,36 @@ musicControl.addEventListener("click", (event) => {
 
     `${event.target.src}`.includes("on.png") ? audio.play() : audio.pause();
 })
+
+reset.addEventListener('click', () => {
+    window.location.reload();
+    reset.style.display = "none";
+});
+
+function clearCharactersAndFinishGame() {
+    ash.style.display = "none";
+    charmander.style.display = "none";
+    zubat.style.display = "none";
+    pikachu.style.display = "none";
+
+    reset.style.display = "block";
+    count.textContent = "";
+}
+
+let currentCount = 10;
+
+const interval = setInterval(() => {
+    if (currentCount <= 0) {
+        game.style.backgroundImage = "url('../assets/game-over.jpg')";
+
+        clearCharactersAndFinishGame();
+        clearInterval(interval);
+        return;
+    }
+
+    currentCount--;
+    count.textContent = currentCount;
+}, 1000);
 
 function getRightPosition() {
     return parseInt(ash.style.right.split("px")) || 2;
